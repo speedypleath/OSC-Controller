@@ -1,12 +1,11 @@
 #include <Arduino.h>
 
-#ifndef S0
+#ifndef MULTIPLEXER_H
 #define S0 D0                             /* Assign Multiplexer pin S0 connect to pin D0 of NodeMCU */
 #define S1 D1                             /* Assign Multiplexer pin S1 connect to pin D1 of NodeMCU */
 #define S2 D2                             /* Assign Multiplexer pin S2 connect to pin D2 of NodeMCU */
 #define S3 D3                             /* Assign Multiplexer pin S3 connect to pin D3 of NodeMCU */
 #define SIG A0                            /* Assign SIG pin as Analog output for all 16 channels of Multiplexer to pin A0 of NodeMCU */
-#endif
 
 class Multiplexer {
 private:
@@ -26,3 +25,5 @@ public:
     bool sensorValueUpdated(int value);
     int getSensorValue();
 };
+
+#endif

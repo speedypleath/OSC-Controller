@@ -1,13 +1,17 @@
 #include <OSCInstance.h>
 #include <Multiplexer.h>
-#include <Credentials.h>
+#include <Settings.h>
 
-OSCInstance *osc = OSCInstance::getInstance(Serial, STASSID, STAPSK);
+OSCInstance *osc;
 Multiplexer *multiplexer = Multiplexer::getInstance();
+Settings *settings = new Settings();
 int analogValue;
 
 void setup() {
     multiplexer->setup();
+    settings->setup();
+    settings->loadConfig();
+    osc = OSCInstance::getInstance(Serial, settings->getSSID(), settings->getPassword());
     osc->setup();
 }
 
