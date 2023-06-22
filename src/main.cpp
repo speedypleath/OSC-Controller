@@ -4,7 +4,7 @@
 
 OSCInstance *osc;
 Multiplexer *multiplexer = Multiplexer::getInstance();
-Settings *settings = new Settings();
+Settings *settings = Settings::getInstance();
 int analogValue;
 
 void setup() {

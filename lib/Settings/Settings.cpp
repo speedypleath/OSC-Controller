@@ -1,11 +1,11 @@
 #include <Settings.h>
 
-// Settings *Settings::getInstance() {
-//     if(!instance) {
-//         instance = new Settings();
-//     }
-//     return instance;
-// }
+Settings *Settings::getInstance() {
+    if(!instance) {
+        instance = new Settings();
+    }
+    return instance;
+}
 
 void Settings::setup() {
     if(!LittleFS.begin()) {
@@ -66,4 +66,4 @@ void Settings::setOSCAddress(const char* oscAddress) {
     config["oscAddress"] = oscAddress;
 }
 
-// Settings *Settings::instance = nullptr;
+Settings *Settings::instance = nullptr;

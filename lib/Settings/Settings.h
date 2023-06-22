@@ -6,6 +6,9 @@
 class Settings {
 private:
     DynamicJsonDocument config = DynamicJsonDocument(1024);
+
+    // Singleton
+    static Settings *instance;
 public:
     Settings() {}
     Settings(Settings &other) = delete;
