@@ -12,7 +12,15 @@ class Multiplexer {
 private:
     int sensors[16];
     int channel = 0;
+
+    // Singleton
+    static Multiplexer *instance;
+    Multiplexer();
 public:
+    Multiplexer(Multiplexer &other) = delete;
+    void operator=(const Multiplexer &) = delete;
+    static Multiplexer *getInstance();
+
     void setup();
     void setChannel(int channel);
     bool sensorValueUpdated(int value);

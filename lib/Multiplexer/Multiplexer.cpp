@@ -1,5 +1,18 @@
 #include <Multiplexer.h>
 
+Multiplexer::Multiplexer() {
+    for(int i = 0; i < 16; i++) {
+        sensors[i] = 0;
+    }
+}
+
+Multiplexer *Multiplexer::getInstance() {
+    if(!instance) {
+        instance = new Multiplexer();
+    }
+    return instance;
+}
+
 void Multiplexer::setup() {
     pinMode(S0,OUTPUT);                       /* Define digital signal pin as output to the Multiplexer pin SO */        
     pinMode(S1,OUTPUT);                       /* Define digital signal pin as output to the Multiplexer pin S1 */  
@@ -27,3 +40,5 @@ bool Multiplexer::sensorValueUpdated(int value) {
 int Multiplexer::getSensorValue() {
     return sensors[channel];
 };
+
+Multiplexer *Multiplexer::instance = nullptr;

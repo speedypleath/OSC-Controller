@@ -5,6 +5,13 @@ OSCInstance::OSCInstance(HardwareSerial& serial, const char *ssid, const char* p
     ssid(ssid), 
     password(password) {}
 
+OSCInstance *OSCInstance::getInstance(HardwareSerial& serial, const char *ssid, const char* password) {
+    if(!instance) {
+        instance = new OSCInstance(serial, ssid, password);
+    }
+    return instance;
+}
+
 void OSCInstance::setup() {
     serial->begin(115200);
     serial->println();
@@ -71,3 +78,5 @@ void OSCInstance::sendOSCMessage(int channel, int sensor, MessageType type) {
     Udp.endPacket();
     msg.empty();
 }
+
+OSCInstance *OSCInstance::instance = nullptr;

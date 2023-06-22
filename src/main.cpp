@@ -2,39 +2,39 @@
 #include <Multiplexer.h>
 #include <Credentials.h>
 
-OSCInstance osc(Serial, STASSID, STAPSK);
-Multiplexer multiplexer;
+OSCInstance *osc = OSCInstance::getInstance(Serial, STASSID, STAPSK);
+Multiplexer *multiplexer = Multiplexer::getInstance();
 int analogValue;
 
 void setup() {
-    multiplexer.setup();
-    osc.setup();
+    multiplexer->setup();
+    osc->setup();
 }
 
 void loop() {
   if(millis() % 10 == 0) {
-    multiplexer.setChannel(0);
+    multiplexer->setChannel(0);
     analogValue = analogRead(SIG);
-    if(multiplexer.sensorValueUpdated(analogValue)) {
-      osc.sendOSCMessage(0, analogValue, Sensor);
+    if(multiplexer->sensorValueUpdated(analogValue)) {
+      osc->sendOSCMessage(0, analogValue, Sensor);
     }
   
-    multiplexer.setChannel(1);
+    multiplexer->setChannel(1);
     analogValue = analogRead(SIG);
-    if(multiplexer.sensorValueUpdated(analogValue)) {
-      osc.sendOSCMessage(1, analogValue, Midi);
+    if(multiplexer->sensorValueUpdated(analogValue)) {
+      osc->sendOSCMessage(1, analogValue, Midi);
     }
 
-    multiplexer.setChannel(2);
+    multiplexer->setChannel(2);
     analogValue = analogRead(SIG);
-    if(multiplexer.sensorValueUpdated(analogValue)) {
-      osc.sendOSCMessage(2, analogValue, Cutoff);
+    if(multiplexer->sensorValueUpdated(analogValue)) {
+      osc->sendOSCMessage(2, analogValue, Cutoff);
     }
   
-    multiplexer.setChannel(3);
+    multiplexer->setChannel(3);
     analogValue = analogRead(SIG);
-    if(multiplexer.sensorValueUpdated(analogValue)) {
-      osc.sendOSCMessage(3, analogValue, Sensor);
+    if(multiplexer->sensorValueUpdated(analogValue)) {
+      osc->sendOSCMessage(3, analogValue, Sensor);
     }
   }
 }
