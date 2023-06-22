@@ -1,7 +1,8 @@
 #include <OSCInstance.h>
 #include <Multiplexer.h>
+#include <Credentials.h>
 
-OSCInstance osc(Serial);
+OSCInstance osc(Serial, STASSID, STAPSK);
 Multiplexer multiplexer;
 int analogValue;
 

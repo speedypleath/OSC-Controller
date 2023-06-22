@@ -1,8 +1,9 @@
 #include <OSCInstance.h>
 
-OSCInstance::OSCInstance(HardwareSerial& serial) {
-    this->serial = &serial;
-}
+OSCInstance::OSCInstance(HardwareSerial& serial, const char *ssid, const char* password): 
+    serial(&serial), 
+    ssid(ssid), 
+    password(password) {}
 
 void OSCInstance::setup() {
     serial->begin(115200);
