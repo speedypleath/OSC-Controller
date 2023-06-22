@@ -39,23 +39,61 @@ void Settings::saveConfig() {
     }
 
     serializeJson(config, file);
+    serializeJsonPretty(config, Serial);
     file.close();
 }
 
+void Settings::configureWifi() {
+  int numberOfNetworks = WiFi.scanNetworks();
+
+  for(int i = 0; i < numberOfNetworks; i++){
+      Serial.print(i + 1); 
+      Serial.print(". Network name: ");
+      Serial.println(WiFi.SSID(i));
+      Serial.print("Signal strength: ");
+      Serial.println(WiFi.RSSI(i));
+      Serial.println("-----------------------");
+
+  }
+
+  while (Serial.available() == 0) {}
+  int menuChoice = Serial.parseInt() - 1;
+  auto ssid = WiFi.SSID(menuChoice);
+  setSSID(ssid.c_str());
+
+  Serial.println("Enter password:");
+  while (Serial.available() == 0) {}
+  auto password = Serial.readString();
+  setPassword(password.c_str());
+
+  saveConfig();
+}
+
+void Settings::resetConfig() {
+    LittleFS.remove("/config.json");
+    LittleFS.format();
+}
+
 const char* Settings::getSSID() {
-    return config["ssid"];
+    return config["network"]["ssid"];
 }
 
 const char* Settings::getPassword() {
-    return config["password"];
+    return config["network"]["password"];
 }
 
 void Settings::setSSID(const char* ssid) {
-    config["ssid"] = ssid;
+    if(!config["network"].is<JsonObject>()) {
+        config["network"] = JsonObject();
+    }
+    config["network"]["ssid"] = ssid;
 }
 
 void Settings::setPassword(const char* password) {
-    config["password"] = password;
+    if(!config["network"].is<JsonObject>()) {
+        config["network"] = JsonObject();
+    }
+    config["network"]["password"] = password;
 }
 
 void Settings::setHostname(const char* hostname) {

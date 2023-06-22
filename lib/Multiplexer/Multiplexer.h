@@ -1,6 +1,6 @@
+#pragma once
 #include <Arduino.h>
 
-#ifndef MULTIPLEXER_H
 #define S0 D0                             /* Assign Multiplexer pin S0 connect to pin D0 of NodeMCU */
 #define S1 D1                             /* Assign Multiplexer pin S1 connect to pin D1 of NodeMCU */
 #define S2 D2                             /* Assign Multiplexer pin S2 connect to pin D2 of NodeMCU */
@@ -25,5 +25,3 @@ public:
     bool sensorValueUpdated(int value);
     int getSensorValue();
 };
-
-#endif

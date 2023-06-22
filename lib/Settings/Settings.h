@@ -2,6 +2,7 @@
 
 #include <LittleFS.h>
 #include <ArduinoJson.h>
+#include <ESP8266WiFi.h>
 
 class Settings {
 private:
@@ -18,6 +19,8 @@ public:
     void setup();
     void loadConfig();
     void saveConfig();
+    void configureWifi();
+    void resetConfig();
 
     const char* getSSID();
     const char* getPassword();
