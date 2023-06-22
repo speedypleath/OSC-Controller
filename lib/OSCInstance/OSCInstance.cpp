@@ -13,11 +13,11 @@ OSCInstance *OSCInstance::getInstance(HardwareSerial& serial, const char *ssid, 
 }
 
 void OSCInstance::setup() {
-    serial->begin(115200);
     serial->println();
     serial->println();
-    serial->print("Connecting to ");
+    serial->print("Connecting to: ");
     serial->println(ssid);
+ 
     WiFi.begin(ssid, password);
 
     while (WiFi.status() != WL_CONNECTED) {
