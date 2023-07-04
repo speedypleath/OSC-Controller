@@ -8,13 +8,8 @@ class Settings {
 private:
     DynamicJsonDocument config = DynamicJsonDocument(1024);
 
-    // Singleton
-    static Settings *instance;
 public:
     Settings() {}
-    Settings(Settings &other) = delete;
-    void operator=(const Settings &) = delete;
-    static Settings *getInstance();
 
     void setup();
     void loadConfig();

@@ -1,38 +1,30 @@
 #include <OSCInstance.h>
 
-OSCInstance::OSCInstance(HardwareSerial& serial, const char *ssid, const char* password): 
-    serial(&serial), 
-    ssid(ssid), 
-    password(password) {}
-
-OSCInstance *OSCInstance::getInstance(HardwareSerial& serial, const char *ssid, const char* password) {
-    if(!instance) {
-        instance = new OSCInstance(serial, ssid, password);
-    }
-    return instance;
-}
-
-void OSCInstance::setup() {
-    serial->println();
-    serial->println();
-    serial->print("Connecting to: ");
-    serial->println(ssid);
+void OSCInstance::setup(HardwareSerial& serial, const char* ssid, const char* password) {
+    this->serial = &serial;
+    this->ssid = ssid;
+    this->password = password;
+    
+    this->serial->println();
+    this->serial->println();
+    this->serial->print("Connecting to: ");
+    this->serial->println(ssid);
  
     WiFi.begin(ssid, password);
 
     while (WiFi.status() != WL_CONNECTED) {
         delay(500);
-        serial->print(".");
+        this->serial->print(".");
     }
-    serial->println("");
+    this->serial->println("");
 
-    serial->println("WiFi connected");
-    serial->println("IP address: ");
-    serial->println(WiFi.localIP());
+    this->serial->println("WiFi connected");
+    this->serial->println("IP address: ");
+    this->serial->println(WiFi.localIP());
 
-    serial->println("Starting UDP");
+    this->serial->println("Starting UDP");
     Udp.begin(localPort);
-    serial->print("Local port: ");
+    this->serial->print("Local port: ");
 }
 
 double OSCInstance::normalize(int value) {
@@ -78,5 +70,3 @@ void OSCInstance::sendOSCMessage(int channel, int sensor, MessageType type) {
     Udp.endPacket();
     msg.empty();
 }
-
-OSCInstance *OSCInstance::instance = nullptr;

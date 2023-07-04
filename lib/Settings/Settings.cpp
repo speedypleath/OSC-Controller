@@ -1,12 +1,5 @@
 #include <Settings.h>
 
-Settings *Settings::getInstance() {
-    if(!instance) {
-        instance = new Settings();
-    }
-    return instance;
-}
-
 void Settings::setup() {
     if(!LittleFS.begin()) {
         Serial.println("An Error has occurred while mounting LittleFS");
@@ -103,5 +96,3 @@ void Settings::setHostname(const char* hostname) {
 void Settings::setOSCAddress(const char* oscAddress) {
     config["oscAddress"] = oscAddress;
 }
-
-Settings *Settings::instance = nullptr;
