@@ -1,6 +1,6 @@
 #include <Settings.h>
 
-void Settings::setup() {
+Settings::Settings() {
     if(!LittleFS.begin()) {
         Serial.println("An Error has occurred while mounting LittleFS");
         return;

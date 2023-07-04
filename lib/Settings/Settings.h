@@ -9,9 +9,8 @@ private:
     DynamicJsonDocument config = DynamicJsonDocument(1024);
 
 public:
-    Settings() {}
+    Settings();
 
-    void setup();
     void loadConfig();
     void saveConfig();
     void configureWifi();

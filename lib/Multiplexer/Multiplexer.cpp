@@ -1,19 +1,15 @@
 #include <Multiplexer.h>
 
-Multiplexer::Multiplexer() {
+Multiplexer::Multiplexer(const uint8_t S0, const uint8_t S1, const uint8_t S2, const uint8_t S3, const uint8_t SIG) {
     for(int i = 0; i < 16; i++) {
         sensors[i] = 0;
     }
 
-    setup();
-}
-
-void Multiplexer::setup() {
-    pinMode(D5,OUTPUT);                       /* Define digital signal pin as output to the Multiplexer pin SO */        
-    pinMode(D6,OUTPUT);                       /* Define digital signal pin as output to the Multiplexer pin S1 */  
-    pinMode(D7,OUTPUT);                       /* Define digital signal pin as output to the Multiplexer pin S2 */ 
-    pinMode(D8,OUTPUT);                       /* Define digital signal pin as output to the Multiplexer pin S3 */  
-    pinMode(SIG, INPUT);                      /* Define analog signal pin as input or receiver from the Multiplexer pin SIG */  
+    pinMode(D5,OUTPUT);
+    pinMode(D6,OUTPUT);         
+    pinMode(D7,OUTPUT);            
+    pinMode(D8,OUTPUT);           
+    pinMode(SIG, INPUT);                    
 }
 
 void Multiplexer::setChannel(int channel) {

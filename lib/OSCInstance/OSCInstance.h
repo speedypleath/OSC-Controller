@@ -22,9 +22,9 @@ private:
     const unsigned int localPort = 8888;        // local port to listen for OSC packets (actually not used for sending)
 
 public:
-    OSCInstance() {}
+    OSCInstance(HardwareSerial& serial);
 
-    void setup(HardwareSerial& serial, const char* ssid, const char* password);
+    void setup(const char* ssid, const char* password);
     double normalize(int value);
     int normalizeCutoff(int value);
     int normalizeMidi(int value);
