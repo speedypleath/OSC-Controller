@@ -1,5 +1,8 @@
 # OSC Controller
 
+## Schematic
+![image](https://github.com/user-attachments/assets/203783e9-bc32-4cf2-8e85-2f88f5e9a770)
+
 ## Flash config file
 
 Create a file named `config.json` in the data folder with the following content:
