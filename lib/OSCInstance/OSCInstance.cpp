@@ -13,9 +13,12 @@ void OSCInstance::setup(const char* ssid, const char* password) {
  
     WiFi.begin(ssid, password);
 
-    while (WiFi.status() != WL_CONNECTED) {
+    while (WiFi.waitForConnectResult() != WL_CONNECTED) {
         delay(500);
-        this->serial->print(".");
+        this->serial->print("Waiting for connection, password: ");
+        this->serial->println(password);
+        this->serial->println(WiFi.waitForConnectResult());
+        WiFi.begin(ssid, password);
     }
     this->serial->println("");
 

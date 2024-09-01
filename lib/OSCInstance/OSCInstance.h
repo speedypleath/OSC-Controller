@@ -17,7 +17,7 @@ private:
     const char* password;
 
     WiFiUDP Udp;                                // A UDP instance to let us send and receive packets over UDP
-    const IPAddress outIp = IPAddress(192,168,0,184);        // remote IP of your computer
+    const IPAddress outIp = IPAddress(192,168,1,9);        // remote IP of your computer
     const unsigned int outPort = 4560;          // remote port to receive OSC
     const unsigned int localPort = 8888;        // local port to listen for OSC packets (actually not used for sending)
 
