@@ -1,15 +1,17 @@
-#include <Multiplexer.h>
+
+#include <Arduino.h> // Add this line to include the Arduino header file
+#include "Multiplexer.h"
 
 Multiplexer::Multiplexer(const uint8_t S0, const uint8_t S1, const uint8_t S2, const uint8_t S3, const uint8_t SIG) {
     for(int i = 0; i < 16; i++) {
         sensors[i] = 0;
-    }
+    } // Adjust the indentation of the closing bracezq
 
-    pinMode(D5,OUTPUT);
-    pinMode(D6,OUTPUT);         
-    pinMode(D7,OUTPUT);            
-    pinMode(D8,OUTPUT);           
-    pinMode(SIG, INPUT);                    
+    pinMode(S0, OUTPUT);
+    pinMode(S1, OUTPUT);         
+    pinMode(S2, OUTPUT);            
+    pinMode(S3, OUTPUT);           
+    pinMode(SIG, INPUT_PULLUP); // Change INPUT to INPUT_PULLUP to set the pin mode correctly                   
 }
 
 void Multiplexer::setChannel(int channel) {

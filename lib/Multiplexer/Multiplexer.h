@@ -4,7 +4,7 @@
 class Multiplexer {
 private:
     int sensors[16];
-    int channel = 0;
+    int channel;
 
 public:
     Multiplexer(const uint8_t S0, const uint8_t S1, const uint8_t S2, const uint8_t S3, const uint8_t SIG);

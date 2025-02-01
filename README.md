@@ -38,3 +38,4 @@ python -m esptool --chip esp8266 --port /dev/cu.usbserial-220 erase_flash
 ### BluetoothSerial.h: No such file or directory
 
 To fix this error, delete `SLIPEncodedBluetoothSerial` from the OSC library and rebuild the project.
+  

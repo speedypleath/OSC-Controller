@@ -25,7 +25,7 @@ public:
     OSCInstance(HardwareSerial& serial);
 
     void setup(const char* ssid, const char* password);
-    double normalize(int value);
+    float normalize(int value);
     int normalizeCutoff(int value);
     int normalizeMidi(int value);
     void sendOSCMessage(int channel, int sensor, MessageType type);

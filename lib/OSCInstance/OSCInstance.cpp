@@ -31,8 +31,8 @@ void OSCInstance::setup(const char* ssid, const char* password) {
     this->serial->print("Local port: ");
 }
 
-double OSCInstance::normalize(int value) {
-    return (double)value / 1024.0;
+float OSCInstance::normalize(int value) {
+    return (float)value / 1024.0;
 }
 
 int OSCInstance::normalizeMidi(int value) {
